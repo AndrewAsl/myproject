@@ -13,7 +13,7 @@
 
 <!--script>
     $(function () {
-        var controller = '<?= App::getCurrentController() ?>';
+        var controller = '<?php// App::getCurrentController() ?>';
         $('ul.nav.navbar-nav li > a[href*=' + controller + ']').parent().addClass('active');
     });
 </script-->
