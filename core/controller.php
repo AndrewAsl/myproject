@@ -37,7 +37,11 @@ class Controller {
         } 
         catch(Exception $e)
         {
-            echo '404: ',  $e->getMessage(), "\n";
+            //echo '404: ',  $e->getMessage(), "\n";
+            $data = array();
+            $data[1]['text'] = $e->getMessage();
+            $this->view = new View();
+            $this->view->render($data);
         }       
         
     }

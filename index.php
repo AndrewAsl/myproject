@@ -14,14 +14,14 @@ spl_autoload_register(function ($class) {
             include $file;
         }
         else {
-            throw new Exception('Такой страницы не существует');
+            throw new Exception('404: Такой страницы не существует');
         }        
     }
     elseif (mb_stripos($class, 'model') !=0){
-        include 'models/' . $class . '.php';
+        include 'models/' . strtolower($class) . '.php';
     }
     elseif (mb_stripos($class, 'view') !=0){
-        include 'views/' . $class . '.php';
+        include 'views/' . strtolower($class) . '.php';
     }
     else {
         include 'core/' . $class . '.php';

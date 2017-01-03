@@ -2,7 +2,7 @@
 <!--footer class="bs-docs-footer" role="contentinfo"-->
 <footer class="footer">
     <div class="container">
-        <p>Это футер</p>
+        <p class="text-muted">&copy; :-D <?=date('Y');?> </p>
     </div>    
 </footer>
 
