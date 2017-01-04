@@ -5,10 +5,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-echo '
-    <div class="container">
-    <form action="'.$_SERVER['SCRIPT_NAME'].'" method="post">
+//var_dump($_SERVER);
+?>
+<script>
+    function ifEmpty(){
+        //alert('Stop');
+        var inp = getElementsByTagName('input');
+        console.log(inp);
+        event.preventDefault();
+    }
+</script>
+<div class="container">
+    <form method="post">
         <div class="form-group">
           <label for="nickname">Login:</label>
           <input type="text" class="form-control" id="nickname" placeholder="Enter login">
@@ -20,7 +28,6 @@ echo '
         <div class="checkbox">
           <label><input type="checkbox"> Remember me</label>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button name="op" type="submit" class="btn btn-default" onclick="ifEmpty()">Submit</button>
     </form>
-    </div>            
-';
+    </div>

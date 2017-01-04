@@ -6,18 +6,12 @@
  * and open the template in the editor.
  */
 
-class View {
-
-    public function __construct() {
-        ob_start();
-    }
+class RegisterView extends View{
     
-    public function render($data){
-        //var_dump($data);
+    public function render($data = array()) {
+        //parent::render($data);
         require './templates/header.php';
-        require './templates/base.page.php';
-        require './templates/footer.php';
+        require './templates/authform.php';
+        require './templates/footer.php'; 
     }
-    
-    
 }

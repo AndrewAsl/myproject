@@ -12,6 +12,7 @@ class Model {
     private $datapage = [];
 
     public function __construct() {
+        Db::connect();
         $this->Data();
     }
     

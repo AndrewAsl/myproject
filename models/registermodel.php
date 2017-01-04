@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-class AuthModel extends Model{
+class RegisterModel extends Model{
     private $datapage = [];
     
     function __construct() {
