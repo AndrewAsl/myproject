@@ -10,6 +10,7 @@ class RegisterView extends View{
     
     public function render($data = array()) {
         //parent::render($data);
+        var_dump($_POST);
         require './templates/header.php';
         require './templates/authform.php';
         require './templates/footer.php'; 

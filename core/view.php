@@ -13,11 +13,10 @@ class View {
     }
     
     public function render($data){
-        //var_dump($data);
+        var_dump($_POST);
         require './templates/header.php';
         require './templates/base.page.php';
         require './templates/footer.php';
     }
-    
     
 }

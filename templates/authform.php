@@ -5,18 +5,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//var_dump($_SERVER);
+var_dump($_POST);
 ?>
-<script>
-    function ifEmpty(){
-        //alert('Stop');
-        var inp = getElementsByTagName('input');
-        console.log(inp);
-        event.preventDefault();
-    }
+<script type="text/javascript">
+    $(document).ready(function(){
+        var nick = $('#nickname').val();
+        var pwd = $('#pwd').val();
+        $('#nickname').change(function(){
+            console.log(nick+' '+pwd);
+        });
+        
+        if (!(nick) || !(pwd)){
+            $('button').click(function(e){
+                alert('stop');
+                //e.preventDefault();
+            });
+        }
+    });
+    
 </script>
 <div class="container">
-    <form method="post">
+    <form action="index.php" method="get">
         <div class="form-group">
           <label for="nickname">Login:</label>
           <input type="text" class="form-control" id="nickname" placeholder="Enter login">
@@ -28,6 +37,6 @@
         <div class="checkbox">
           <label><input type="checkbox"> Remember me</label>
         </div>
-        <button name="op" type="submit" class="btn btn-default" onclick="ifEmpty()">Submit</button>
+        <button name="op" type="submit" class="btn btn-default" >Submit</button>
     </form>
     </div>

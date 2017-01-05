@@ -10,7 +10,7 @@ class Register_Controller extends Controller {
     
     private $model;
     private $view;
-     private $formData=array();
+    private $formData=array();
     private $error;
     private $message;
     
@@ -24,10 +24,14 @@ class Register_Controller extends Controller {
         //echo 'this is page Authentification';
         //exit();
         //var_dump($this->adress);
-        $this->model = new RegisterModel();
+        //$this->model = new RegisterModel();
         $this->view = new RegisterView();
         //var_dump($this->model->getData());
-        $this->view->render($this->model->getData());        
+        $this->view->render(array());
+        if($this->error){
+            $this->getErrors();
+        }
+        $this->getErrors();
         
     }
     private function check(){
@@ -35,9 +39,9 @@ class Register_Controller extends Controller {
             if (!empty($_POST['nickname']) && !empty($_POST['pwd'])){
                 $this->formData = $this->sanitaze($_POST);                
             } elseif (!$_POST['nickname'] || empty($_POST['nickname'])){
-                //$this->error .= 'Поле Имя обязательно для заполнения';
-                var_dump($this->error);
-                exit();
+                $this->error .= 'Поле Имя обязательно для заполнения';
+                //var_dump($this->error);
+                //exit();
                 //header('Refresh');
             } else{
                 $this->error .= 'Поле Сообщение обязательно для заполнения';
@@ -57,5 +61,9 @@ class Register_Controller extends Controller {
             $array[$key] = $value;
         }
         return $array;
+    }
+    
+    public function getErrors(){
+        echo $this->error;
     }
 }
