@@ -7,20 +7,8 @@
  */
 
 class RegisterModel extends Model{
-    private $datapage = [];
-    
-    function __construct() {
-        parent::__construct();
-        $this->Data();
-        //var_dump($this->datapage);
-        
-    }
-    private function Data(){
-        $data = 'Auth Model';
-        $this->datapage[1]['text'] = $data;
-    }
-    public function getData() {
-        return $this->datapage;
+    public function run() {
+        //var_dump($_POST);
     }
     
 }
