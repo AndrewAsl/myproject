@@ -9,6 +9,8 @@ class Register_Controller extends Controller {
     
     //protected $model;
     //private $view;
+    protected $modelName = 'RegisterModel';
+    protected $viewName = 'RegisterView';
     private $formData=array();
     private $error;
     private $message;
@@ -17,20 +19,18 @@ class Register_Controller extends Controller {
         parent::__construct();
     }
 
-        public function run() {
-        $this->model = new RegisterModel();
-        //$this->model->run();
-        
-        $this->view = new RegisterView();
-        //var_dump($this->model->getData());
-        $this->view->render(array());
-        $this->check();
-        
+    public function run() {
+       // parent::run();
+        $this->model = new $this->modelName($this->outputData);
+        $this->model->run($this->action, $this->id, $this->pNum);
+        $this->view = new $this->viewName();
+        $this->view->render($this->model->getDataPage()); 
+       $this->check();        
     }
-    private function check(){
+    protected function check(){
         if (isset($_POST['op'])){
             if (!empty($_POST['name']) && !empty($_POST['message'])){
-                $this->formData = $this->sanitaze($_POST);
+                $this->formData = parent::sanitaze($_POST);
                 if($this->formData){
                     var_dump($this->formData);
                 }
@@ -42,20 +42,7 @@ class Register_Controller extends Controller {
         } else {
             return;
         }        
-    }
-    
-    private function sanitaze($array){
-        foreach ($array as $key=>$value) {
-            $value = trim($value);
-            $value = strip_tags($value);
-            $value = str_replace("\t", ' ', $value);
-            $value = str_replace(array("\r\n", "\n\r", "\r", "\n"), '<br/>', $value);
-            $value = htmlspecialchars($value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
-            $array[$key] = $value;
-        }
-        return $array;
-    }
-    
+    }   
     public function getErrors(){
         echo $this->error;
     }

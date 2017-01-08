@@ -12,5 +12,8 @@
  * @author Андрей
  */
 class MainModel extends Model{
-    //put your code here
+    
+    public function getDataPage() {
+        return $this->dataPage = array('content'=>'Hello World!');
+    }
 }

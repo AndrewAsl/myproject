@@ -11,10 +11,12 @@
  *
  * @author Андрей
  */
-class MainView extends View {
-    //put your code here
-//    public function render($data) {
-//        parent::render($data);
-//        //var_dump($data);
-//    }
+class MaterialView extends View {
+  protected function renderContent(array $data) {
+        //extract($data);
+        require './templates/base.page.php';
+//       foreach ($data as $value){ 
+//            echo $value.'<br>';
+//       }    
+    }  
 }

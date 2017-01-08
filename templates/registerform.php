@@ -10,7 +10,7 @@
     $(function(){
         $('#op').click(function(e){
             var nick = $('#name').val();
-            var pwd =  $('#psw').val();
+            var pwd =  $('#message').val();
             if (nick === '' || pwd === ''){
                 e.preventDefault();
             } else {
@@ -40,11 +40,12 @@
 <div class="container">
    <form action="" method="post">
         <label for="name">Имя:</label><br>
-        <input id="name" type="text" name="name" size="80" maxlength="20"
+        <input id="name" type="text" name="name" size="20" maxlength="20"
         value="<?=$_POST['name']?>"><br>
-        <label for="psw">Ваш пароль:</label><br>
-        <input id="psw" name="psw" size="80" maxlength="20" type='password'><br>
-          <label><input type="checkbox" name="check" id="check"> Запомнить меня</label><br>
+        <p>Поле Имя является обязательным <br> Должно состоять от 3 до 20 символов </p>
+        <label for="name">Ваше сообщение:</label><br>
+        <textarea id="message" name="message" rows="10" cols="30"><?=$_POST['message']?></textarea><br>
+        <p>Поле Сообщение является обязательным <br> Должно состоять от 5 до 1000 символов </p>
         <input id="op" type="submit" name="op" value="Отправить">
     </form>
 </div>

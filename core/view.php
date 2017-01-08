@@ -18,8 +18,12 @@ class View {
         require './templates/footer.php';
     }
     
-    protected function renderContent($data) {
-        //require './templates/base.page.php';
+    protected function renderContent(array $data) {
+        extract($data);
+        require './templates/base.page.php';
+//       foreach ($data as $value){ 
+//            echo $value.'<br>';
+//       }    
     }
     
 }

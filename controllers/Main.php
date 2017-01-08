@@ -13,11 +13,6 @@
  */
 class Main_Controller extends Controller {
     //put your code here
-    public function run(){
-        $this->model = new MainModel();
-        //$this->model->setAdress($this->getAdress());
-        //$this->model->run();
-        $this->view = new MainView();
-        $this->view->render(array());
-    }
+    protected $modelName = 'MainModel';
+    protected $viewName = 'MainView';
 }

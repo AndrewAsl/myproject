@@ -36,8 +36,8 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/auth">Войти</a></li>
-                <li><a href="/register">Регистрация</a></li>
+                <li><a href="/users/auth">Войти</a></li>
+                <li><a href="/users/register">Регистрация</a></li>
             </ul>
         </div>
     </div>

@@ -34,4 +34,14 @@ class Db {
             return false;
         }    
     }
+    
+    static function read($table_name){
+        //$keys_arr = array_keys($values);
+        //$str = implode(",", $keys_arr);
+        $stmt = self::$dbc->prepare(
+                "SELECT * FROM ".$table_name);
+        $stmt-> execute();
+        $result = $stmt ->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }
