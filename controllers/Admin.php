@@ -7,14 +7,12 @@
  */
 
 /**
- * Description of mainmodel
+ * Description of Admin
  *
  * @author Андрей
  */
-class MainModel extends Model{
-    
-    public function getDataPage() {
-        return $this->dataPage = array('content'=>'Hello World!');
-    }
-  protected  function read(){}  
+class Admin_Controller extends Controller{
+    //put your code here
+    protected $modelName = 'MaterialModel';
+    protected $viewName = 'MaterialView';
 }

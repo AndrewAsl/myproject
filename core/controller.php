@@ -20,7 +20,6 @@ class Controller {
     public function __construct() {
         $this->adress=empty($_GET['uri'])?'main':$_GET['uri'];
         $this->pNum = isset($_GET['p'])?intval($_GET['p']):1;
-        
     }
     public function run() {
         $this->adress = rtrim($this->adress, '/');

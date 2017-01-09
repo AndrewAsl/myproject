@@ -10,22 +10,22 @@ class Users_Controller extends Controller {
     protected $modelName = 'UserModel';
     protected $viewName = 'UserView';
     public $outputData;
-    static $formForView;
+    static $tplForView;
 
     
     protected function setAction(){
         //var_dump($this->names);
-        if ($this->names[1] == 'auth'){
-            $this->action = 'auth';
-            self::$formForView = 'auth';
-        }
-        if ($this->names[1] == 'register'){
-            $this->action = self::$formForView = 'register';
-        }
+//        if ($this->names[1] == 'auth'){
+//            $this->action = 'auth';
+//            self::$formForView = 'auth';
+//        }
+//        if ($this->names[1] == 'register'){
+            $this->action = self::$tplForView = $this->names[1];
+//        }
     }
     
-    public static function getFormView(){
-        return self::$formForView;
+    public static function getTplView(){
+        return self::$tplForView;
     }
     
     protected function check(){
