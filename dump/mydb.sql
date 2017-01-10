@@ -11,6 +11,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Дамп структуры для таблица mydb.accounts
+DROP TABLE IF EXISTS `accounts`;
 CREATE TABLE IF NOT EXISTS `accounts` (
   `account_id` int(11) NOT NULL,
   `account_qt` decimal(10,0) DEFAULT NULL,
@@ -27,6 +28,7 @@ DELETE FROM `accounts`;
 
 
 -- Дамп структуры для таблица mydb.books
+DROP TABLE IF EXISTS `books`;
 CREATE TABLE IF NOT EXISTS `books` (
   `book_id` int(11) NOT NULL AUTO_INCREMENT,
   `bookname` varchar(45) DEFAULT NULL,
@@ -44,6 +46,7 @@ INSERT INTO `books` (`book_id`, `bookname`, `book_price`) VALUES
 
 
 -- Дамп структуры для таблица mydb.book_rubrics
+DROP TABLE IF EXISTS `book_rubrics`;
 CREATE TABLE IF NOT EXISTS `book_rubrics` (
   `br_id` int(11) NOT NULL AUTO_INCREMENT,
   `books_book_id` int(11) NOT NULL,
@@ -63,26 +66,33 @@ DELETE FROM `book_rubrics`;
 
 
 -- Дамп структуры для таблица mydb.materials
+DROP TABLE IF EXISTS `materials`;
 CREATE TABLE IF NOT EXISTS `materials` (
   `material_id` int(11) NOT NULL AUTO_INCREMENT,
-  `material_types_mt_id` int(11) NOT NULL,
+  `material_types_mt_id` int(11) DEFAULT NULL,
   `mat_title` varchar(45) DEFAULT NULL,
   `anons` varchar(255) DEFAULT NULL,
   `body` text,
   `in_book` tinyint(1) DEFAULT NULL,
   `material_price` decimal(5,2) DEFAULT NULL,
-  PRIMARY KEY (`material_id`,`material_types_mt_id`),
+  PRIMARY KEY (`material_id`),
   KEY `fk_materials_material_types1_idx` (`material_types_mt_id`),
   CONSTRAINT `fk_materials_material_types1` FOREIGN KEY (`material_types_mt_id`) REFERENCES `material_types` (`mt_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы mydb.materials: ~0 rows (приблизительно)
 DELETE FROM `materials`;
 /*!40000 ALTER TABLE `materials` DISABLE KEYS */;
+INSERT INTO `materials` (`material_id`, `material_types_mt_id`, `mat_title`, `anons`, `body`, `in_book`, `material_price`) VALUES
+	(12, NULL, 'Title2', 'Text body2', 'Text body, much text2', NULL, 11.25),
+	(13, NULL, 'Title1', 'Text body1', 'Text body, much text1', NULL, 11.25),
+	(14, NULL, 'Title1', 'Text body1', 'Text body, much text1', NULL, 11.25),
+	(15, NULL, 'Title5', 'Text body5', 'Text body, much text5', NULL, 11.25);
 /*!40000 ALTER TABLE `materials` ENABLE KEYS */;
 
 
 -- Дамп структуры для таблица mydb.material_types
+DROP TABLE IF EXISTS `material_types`;
 CREATE TABLE IF NOT EXISTS `material_types` (
   `mt_id` int(11) NOT NULL AUTO_INCREMENT,
   `mattype_titlel` varchar(45) DEFAULT NULL,
@@ -96,6 +106,7 @@ DELETE FROM `material_types`;
 
 
 -- Дамп структуры для таблица mydb.notices
+DROP TABLE IF EXISTS `notices`;
 CREATE TABLE IF NOT EXISTS `notices` (
   `notice_id` int(11) NOT NULL,
   `notice_text` varchar(45) DEFAULT NULL,
@@ -109,6 +120,7 @@ DELETE FROM `notices`;
 
 
 -- Дамп структуры для таблица mydb.notices_has_users
+DROP TABLE IF EXISTS `notices_has_users`;
 CREATE TABLE IF NOT EXISTS `notices_has_users` (
   `notices_notice_id` int(11) NOT NULL,
   `users_user_id` int(11) NOT NULL,
@@ -126,6 +138,7 @@ DELETE FROM `notices_has_users`;
 
 
 -- Дамп структуры для таблица mydb.orders
+DROP TABLE IF EXISTS `orders`;
 CREATE TABLE IF NOT EXISTS `orders` (
   `order_id` int(11) NOT NULL AUTO_INCREMENT,
   `users_user_id` int(11) NOT NULL,
@@ -143,6 +156,7 @@ DELETE FROM `orders`;
 
 
 -- Дамп структуры для таблица mydb.orders_has_books
+DROP TABLE IF EXISTS `orders_has_books`;
 CREATE TABLE IF NOT EXISTS `orders_has_books` (
   `orders_order_id` int(11) NOT NULL,
   `orders_users_user_id` int(11) NOT NULL,
@@ -161,6 +175,7 @@ DELETE FROM `orders_has_books`;
 
 
 -- Дамп структуры для таблица mydb.orders_has_materials
+DROP TABLE IF EXISTS `orders_has_materials`;
 CREATE TABLE IF NOT EXISTS `orders_has_materials` (
   `orders_order_id` int(11) NOT NULL,
   `orders_users_user_id` int(11) NOT NULL,
@@ -179,6 +194,7 @@ DELETE FROM `orders_has_materials`;
 
 
 -- Дамп структуры для таблица mydb.payed_period
+DROP TABLE IF EXISTS `payed_period`;
 CREATE TABLE IF NOT EXISTS `payed_period` (
   `payp_id` int(11) NOT NULL AUTO_INCREMENT,
   `period` tinyint(4) DEFAULT NULL,
@@ -197,6 +213,7 @@ DELETE FROM `payed_period`;
 
 
 -- Дамп структуры для таблица mydb.prices_for_pay_period
+DROP TABLE IF EXISTS `prices_for_pay_period`;
 CREATE TABLE IF NOT EXISTS `prices_for_pay_period` (
   `pricepp_id` int(11) NOT NULL AUTO_INCREMENT,
   `period_name` varchar(25) DEFAULT NULL,
@@ -211,6 +228,7 @@ DELETE FROM `prices_for_pay_period`;
 
 
 -- Дамп структуры для таблица mydb.rubric_relations
+DROP TABLE IF EXISTS `rubric_relations`;
 CREATE TABLE IF NOT EXISTS `rubric_relations` (
   `ancestor_id` int(11) NOT NULL COMMENT 'ID родителя',
   `descendant_id` int(11) NOT NULL COMMENT 'ID потомка',
@@ -228,6 +246,7 @@ DELETE FROM `rubric_relations`;
 
 
 -- Дамп структуры для таблица mydb.users
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `ur_id` int(11) NOT NULL,
@@ -247,7 +266,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   CONSTRAINT `fk_users_paypp1` FOREIGN KEY (`payp_id`) REFERENCES `payed_period` (`payp_id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы mydb.users: ~0 rows (приблизительно)
+-- Дамп данных таблицы mydb.users: ~1 rows (приблизительно)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`user_id`, `ur_id`, `payp_id`, `nickname`, `email`, `firstname`, `middlename`, `surname`, `phone`, `password`) VALUES
@@ -256,6 +275,7 @@ INSERT INTO `users` (`user_id`, `ur_id`, `payp_id`, `nickname`, `email`, `firstn
 
 
 -- Дамп структуры для таблица mydb.user_roles
+DROP TABLE IF EXISTS `user_roles`;
 CREATE TABLE IF NOT EXISTS `user_roles` (
   `ur_id` int(11) NOT NULL AUTO_INCREMENT,
   `ur_title` varchar(45) DEFAULT NULL,
