@@ -7,23 +7,36 @@
  */
 
 class View {
+    protected $data;
+    protected $pageNames;
 
-    public function __construct() {
+    public function __construct($names) {
         ob_start();
+        $this->pageNames = $names;
+        
     }
     
     public function render($data){
+        $this->data = $data;
         require './templates/header.php';
-        $this->renderContent($data);        
+        $this->renderContent();        
         require './templates/footer.php';
     }
     
-    protected function renderContent(array $data) {
-        extract($data);
-        require './templates/base.page.php';
-//       foreach ($data as $value){ 
-//            echo $value.'<br>';
-//       }    
+    protected function renderContent() {
+        $needtpl = array_slice($this->pageNames, 0, 2);
+        var_dump($needtpl);
+        if ($needtpl){
+            foreach ($needtpl as $tpl){
+                include "./templates/$tpl.tpl.php";
+            }
+        } else {
+            foreach ($this->pageNames as $tpl){
+                include "./templates/$tpl.tpl.php";
+            }
+        }
+        
+        
     }
     
 }

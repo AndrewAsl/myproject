@@ -29,15 +29,25 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="/users">Пользователи</a>
-                </li>
-                <li>
                     <a href="/materials">Статьи</a>
                 </li>
+                <li>
+                    <a href="/books">Книги</a>
+                </li>
+                <?php if($_SESSION['username'] === 'admin'):?>
+                 <li>
+                    <a href="/users">Пользователи</a>
+                </li>
+                <?php endif;?>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <?php if($_SESSION[loggedIn]):?>
+                <li><a href="/users/<?=$_SESSION['userID']?>">Hello,<?=$_SESSION['username']?></a></li>
+                <li><a href="/users/logout">Выход</a></li>
+                <?php else:?>
                 <li><a href="/users/auth">Войти</a></li>
                 <li><a href="/users/register">Регистрация</a></li>
+                <?php endif;?>
             </ul>
         </div>
     </div>

@@ -39,6 +39,7 @@ class Kernel {
                 include 'core/' . $class . '.php';
             }    
         });
+            session_start ();
     }
 
         public function run(){

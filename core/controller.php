@@ -16,7 +16,6 @@ class Controller {
     protected $pNum;
     protected $id;    
     protected $names = [];
-    static $tplForView;
     
     public function __construct() {
         $this->adress=empty($_GET['uri'])?'main':$_GET['uri'];
@@ -30,7 +29,7 @@ class Controller {
         if ($this->modelName && $this->viewName){
             $this->model = new $this->modelName($this->outputData);
             $this->model->run($this->action, $this->id, $this->pNum);
-            $this->view = new $this->viewName();
+            $this->view = new $this->viewName($this->getNames());
             $this->view->render($this->model->getDataPage());            
         } else {
             exit();
@@ -42,7 +41,7 @@ class Controller {
         if ($this->names[0] !== 'admin'){
             switch ($count) {
                 case 1:                    
-                    $this->action = 'read';                    
+                    $this->action = 'read';
                     break;
                 case 2:
                     $this->action = 'read';
@@ -69,9 +68,6 @@ class Controller {
     
     protected function check(){}
     
-    public static function getTplView(){
-        return self::$tplForView;
-    }
 
     protected function sanitaze($array){
         foreach ($array as $key=>$value) {
@@ -85,8 +81,8 @@ class Controller {
         return $array;
     }
     
-    public function getAdress(){
-        return $this->adress;
+    public function getNames(){
+        return $this->names;
     }
     
 }

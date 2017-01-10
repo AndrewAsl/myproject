@@ -45,21 +45,20 @@ class Model {
         Db::insert();
     }
     
-    protected  function read ($id = ''){
-       if ($id){
-            $this->id = $id;
+    protected  function read (){
+       if (!empty($this->id)){
             Db::singleRead($this->id);  
        } else {
-           Db::read($this->table_name);
+           $this->dataPage = Db::readonetable($this->table_name);
        } 
     }
     
-    protected function update ($id){
+    protected function update (){
         $this->id = $id;
         Db::update($this->id);
     }
     
-    protected function delete ($id){
+    protected function delete (){
         $this->id = $id;
         Db::delete($this->id);
     }

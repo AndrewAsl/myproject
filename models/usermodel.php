@@ -59,6 +59,13 @@ class UserModel extends Model {
         var_dump(SID);
     }
     
+    function logout(){
+        //Session::init();
+        session_destroy();
+        header('Location:/users/auth');
+        exit();
+    }
+    
     function register(){
         var_dump(get_object_vars($this));
     }
