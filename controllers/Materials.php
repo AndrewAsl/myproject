@@ -14,13 +14,13 @@ class Materials_Controller extends Controller {
 //    protected $pNum;
 //    protected $id; 
 //    
-    public function run() {
-        parent::run();
+    //public function run() {
+    //    parent::run();
 //        $this->setAction();
         //var_dump($this->action);
 //        $this->model = new $this->modelName($this->outputData);
 //        $this->model->run($this->action, $this->id, $this->pNum);
 //        $this->view = new $this->viewName();
 //        $this->view->render($this->model->getDataPage());
-    }
+    //}
 }

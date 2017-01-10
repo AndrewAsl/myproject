@@ -12,25 +12,25 @@
  * @author Андрей
  */
 class MaterialModel extends Model{
-    protected $table_name = 'books';
+    protected $table_name = 'materials';
     
-    public function run ($action, $id, $pNum) {
-        $this->id = $id;
-        $this->method = $action;        
-        $this->pNum = $pNum;
-        //$act = 'read';
-        //var_dump($this->method);
-        if (method_exists($this, $this->method)){
-            $this->{$this->method}($this->id);
-            echo 'meth exists';
-        } else {
-            echo 'Method not exist';
-        } 
-    }
+//    public function run ($action, $id, $pNum) {
+//        $this->id = $id;
+//        $this->method = $action;        
+//        $this->pNum = $pNum;
+//        //$act = 'read';
+//        //var_dump($this->method);
+//        if (method_exists($this, $this->method)){
+//            $this->{$this->method}($this->id);
+//            echo 'meth exists';
+//        } else {
+//            echo 'Method not exist';
+//        } 
+//    }
         
         
     protected function create (){
-        Db::insert();
+        Db::insert($this->table_name, $this->inputData);
     }
     
     protected  function read ($id = ''){
@@ -38,7 +38,7 @@ class MaterialModel extends Model{
             $this->id = $id;
             Db::singleRead($this->id);  
        } else {
-           $this->dataPage = Db::read($this->table_name);
+           $this->dataPage = Db::readonetable($this->table_name);
        } 
     }
     

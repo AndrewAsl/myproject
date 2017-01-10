@@ -16,6 +16,7 @@ class Controller {
     protected $pNum;
     protected $id;    
     protected $names = [];
+    static $tplForView;
     
     public function __construct() {
         $this->adress=empty($_GET['uri'])?'main':$_GET['uri'];
@@ -67,6 +68,10 @@ class Controller {
     }
     
     protected function check(){}
+    
+    public static function getTplView(){
+        return self::$tplForView;
+    }
 
     protected function sanitaze($array){
         foreach ($array as $key=>$value) {

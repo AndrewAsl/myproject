@@ -22,20 +22,25 @@ class Db {
         }
     }
     
-    static function insert($table_name, $cols, array $values){
-        $keys_arr = array_keys($values);
-        $str = implode(",", $keys_arr);
-        $stmt = self::$dbc->prepare(
-                "INSERT INTO".$table_name.$cols.
-                "VALUES (".$str.")");
-        if($stmt-> execute($values)){
-            return true;
-        } else{ 
+    static function insert($table_name, array $values){
+        $cols = array_keys($values);
+        $str = implode(", ", $cols);
+        $pattern = '/(^|[,]\s+)([a-zA-z])/iuU';
+        $replace = '$1:$2';
+        $newvalues = preg_replace ($pattern , $replace , $str);
+        foreach ($values as $k=>$val){
+            $k = preg_replace('/\b[a-zA-Z_-]+\b/', ':$0', $k);
+            $newval[$k] = $val;
+        }
+        $stmt =self::$dbc->prepare("INSERT INTO ".$table_name." (".$str.")"." VALUES (".$newvalues.")");
+        if($stmt-> execute($newval)){
+            return self::$dbc->lastInsertId(); 
+        } else {
             return false;
-        }    
+        }   
     }
     
-    static function read($table_name){
+    static function readonetable($table_name){
         //$keys_arr = array_keys($values);
         //$str = implode(",", $keys_arr);
         $stmt = self::$dbc->prepare(
@@ -44,4 +49,21 @@ class Db {
         $result = $stmt ->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+    
+    static function update($table_name, $cols, array $values){
+        
+       $stmt = self::$dbc->prepare(
+                "UPDATE ".$table_name. " SET "); 
+    }
+
+
+//    DELETE [LOW_PRIORITY] [QUICK] [IGNORE] FROM
+//tbl_name [WHERE where_condition] [ORDER BY
+//...] [LIMIT row_count]
+//    
+//    
+//    UPDATE [LOW_PRIORITY] [IGNORE] tbl_name SET
+//col_name1={expr1|DEFAULT} [,
+//col_name2={expr2|DEFAULT}] ... [WHERE
+//where_condition] [ORDER BY ...] [LIMIT row_count]
 }
