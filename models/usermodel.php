@@ -43,7 +43,7 @@ class UserModel extends Model {
                 setcookie('myprojectsitename', serialize($_SESSION), time()+3600);
             }
             //var_dump($_SESSION);
-            header('Location: /users/login');
+            header('Location: /users');
             exit();            
         }
         

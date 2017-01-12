@@ -10,17 +10,22 @@ class Materials_Controller extends Controller {
     
     protected $modelName = 'MaterialModel';
     protected $viewName = 'MaterialView';
-//    protected $action;
-//    protected $pNum;
-//    protected $id; 
-//    
-    //public function run() {
-    //    parent::run();
-//        $this->setAction();
-        //var_dump($this->action);
-//        $this->model = new $this->modelName($this->outputData);
-//        $this->model->run($this->action, $this->id, $this->pNum);
-//        $this->view = new $this->viewName();
-//        $this->view->render($this->model->getDataPage());
-    //}
+
+//    protected function setAction() {
+//        parent::setAction();
+//        
+//    }
+    protected function check(){
+        if (isset($_POST['op'])){
+            if (!empty($_POST)){
+                $this->outputData = parent::sanitaze($_POST);
+            } elseif (!$_POST['name'] || empty($_POST['name'])){
+                $this->error .= 'Поле Имя обязательно для заполнения';
+            } else{
+                $this->error .= 'Поле Сообщение обязательно для заполнения';
+            }
+        } else {
+            return;
+        }
+    }
 }

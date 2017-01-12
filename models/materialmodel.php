@@ -13,10 +13,15 @@
  */
 class MaterialModel extends Model{
     protected $table_name = 'materials';
+    protected $fieldname = 'material_id';
     
-//    protected function read() {
-//        parent::read();
-//        var_dump($this->dataPage);
-//    }
+    protected  function read (){
+        //var_dump($this->id);
+       if (!empty($this->id)){
+           $this->dataPage = Db::singleRead($this->table_name,$this->fieldname, (int)$this->id);  
+       } else {
+           $this->dataPage = Db::readonetable($this->table_name);
+       } 
+    }
     
 }

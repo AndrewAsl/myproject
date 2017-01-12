@@ -17,6 +17,9 @@
         $('ul.nav.navbar-nav li > a[href*=' + controller + ']').parent().addClass('active');
     });
 </script-->
+    <!--script>
+        CKEDITOR.replace( 'textarea' );
+    </script-->
 </div>
 </body>
 </html>

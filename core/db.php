@@ -50,6 +50,17 @@ class Db {
         return $result;
     }
     
+    static function singleRead($table_name, $namefield, $id){
+        //$keys_arr = array_keys($values);
+        //$str = implode(",", $keys_arr);
+        $stmt = self::$dbc->prepare(
+                "SELECT * FROM ".$table_name." WHERE ".$namefield."=".$id);
+        //var_dump($stmt);
+        $stmt-> execute();
+        $result = $stmt ->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+    
     static function update($table_name, $cols, array $values){
         
        $stmt = self::$dbc->prepare(

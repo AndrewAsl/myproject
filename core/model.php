@@ -17,6 +17,7 @@ class Model {
     protected $dataPage = [];//массив всех данных для отображения во вью страницы
     protected $inputData =[];//массив входящих данных
     protected $method;
+    protected $fieldname;
     
 
     public function __construct($inputData = []) {
@@ -42,12 +43,19 @@ class Model {
     }
     
     protected function create (){
-        Db::insert();
+        $ok = Db::insert($this->table_name, $this->inputData);
+        if($ok){
+            header ("Location: /materials");
+            exit();
+        } else {
+            var_dump($ok);
+        }
+        
     }
     
     protected  function read (){
        if (!empty($this->id)){
-            Db::singleRead($this->id);  
+            $this->dataPage = Db::singleRead($this->table_name,$this->fieldname, $this->id);  
        } else {
            $this->dataPage = Db::readonetable($this->table_name);
        } 

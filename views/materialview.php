@@ -12,5 +12,16 @@
  * @author Андрей
  */
 class MaterialView extends View {
+    protected $tpl =['materials', 'onematerial'];
+    
+    protected function includetpl($data){
+        parent::includetpl($data);
+        if ($this->pageNames[1] === 'create'){
+            include "./templates/materialcreate.tpl.php";
+        } 
+//        else {
+//            include "./templates/".$this->tpl[0].".tpl.php";
+//        }
+    }
     
 }

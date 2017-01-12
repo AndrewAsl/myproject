@@ -3,8 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/OpenServer/domains/myproject/templates/materials.tpl.php</file>
+            <file>file:/D:/OpenServer/domains/myproject/core/view.php</file>
+            <file>file:/D:/OpenServer/domains/myproject/models/usermodel.php</file>
+            <file>file:/D:/OpenServer/domains/myproject/core/session.php</file>
             <file>file:/D:/OpenServer/domains/myproject/core/db.php</file>
+            <file>file:/D:/OpenServer/domains/myproject/views/materialview.php</file>
+            <file>file:/D:/OpenServer/domains/myproject/templates/main.tpl.php</file>
+            <file>file:/D:/OpenServer/domains/myproject/core/kernel.php</file>
             <file>file:/D:/OpenServer/domains/myproject/core/controller.php</file>
+            <file>file:/D:/OpenServer/domains/myproject/views/userview.php</file>
+            <file>file:/D:/OpenServer/domains/myproject/models/mainmodel.php</file>
+            <file>file:/D:/OpenServer/domains/myproject/controllers/Users.php</file>
+            <file>file:/D:/OpenServer/domains/myproject/templates/header.php</file>
         </group>
     </open-files>
 </project-private>

@@ -9,6 +9,7 @@
 class View {
     protected $data;
     protected $pageNames;
+    protected $tpl =[];
 
     public function __construct($names) {
         ob_start();
@@ -19,24 +20,27 @@ class View {
     public function render($data){
         $this->data = $data;
         require './templates/header.php';
-        $this->renderContent();        
+        $newdata = $this->renderContent();
+        $this->includetpl($newdata);
         require './templates/footer.php';
     }
     
     protected function renderContent() {
-        $needtpl = array_slice($this->pageNames, 0, 2);
-        var_dump($needtpl);
-        if ($needtpl){
-            foreach ($needtpl as $tpl){
-                include "./templates/$tpl.tpl.php";
+        foreach ($this->data as $data){
+            foreach ($data as $field => $fieldvalue){
+                $formatdata[$field] = $fieldvalue;
             }
+            return $formatdata;
+        }             
+    }
+    
+    protected function includetpl($data){
+        if ($this->pageNames[1]){
+            include "./templates/".$this->tpl[1].".tpl.php";
         } else {
-            foreach ($this->pageNames as $tpl){
-                include "./templates/$tpl.tpl.php";
-            }
+            include "./templates/".$this->tpl[0].".tpl.php";
         }
-        
-        
+              
     }
     
 }
