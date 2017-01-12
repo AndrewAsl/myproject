@@ -18,23 +18,25 @@ class View {
     }
     
     public function render($data){
-        $this->data = $data;
+        $this->data = $data;        
         require './templates/header.php';
-        $newdata = $this->renderContent();
-        $this->includetpl($newdata);
+        $this->renderContent();
         require './templates/footer.php';
     }
     
     protected function renderContent() {
-        foreach ($this->data as $data){
-            foreach ($data as $field => $fieldvalue){
-                $formatdata[$field] = $fieldvalue;
-            }
-            return $formatdata;
-        }             
+        $main = $this->data['main'];
+        for($i=1; $i<count($this->data); $i++){
+            $extra.$i = $this->data['extra'.$i];
+        }
+        $this->includetpl();
     }
     
-    protected function includetpl($data){
+    
+    protected function includetpl(){
+        //$this->data;
+        //$data = $this->renderContent();
+        //var_dump($data);
         if ($this->pageNames[1]){
             include "./templates/".$this->tpl[1].".tpl.php";
         } else {

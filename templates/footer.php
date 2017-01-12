@@ -1,3 +1,4 @@
+</div>
 <div class="row">
 <!--footer class="bs-docs-footer" role="contentinfo"-->
 <footer class="footer">
@@ -21,5 +22,6 @@
         CKEDITOR.replace( 'textarea' );
     </script-->
 </div>
+
 </body>
 </html>

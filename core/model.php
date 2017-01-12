@@ -55,9 +55,9 @@ class Model {
     
     protected  function read (){
        if (!empty($this->id)){
-            $this->dataPage = Db::singleRead($this->table_name,$this->fieldname, $this->id);  
+            $this->dataPage['main'] = Db::singleRead($this->table_name,$this->fieldname, (int)$this->id);  
        } else {
-           $this->dataPage = Db::readonetable($this->table_name);
+           $this->dataPage['main'] = Db::readonetable($this->table_name);
        } 
     }
     
