@@ -14,20 +14,14 @@
 class MaterialView extends View {
     protected $tpl =['materials', 'onematerial'];
     
-    protected function includetpl(){
+    protected function includetpl($data){
         //var_dump($this->data);
-        parent::includetpl();
+        parent::includetpl($data);
         if ($this->pageNames[1] === 'create'){
             include "./templates/materialcreate.tpl.php";
         } 
     }
-//    protected function renderContent() {
-//        foreach ($this->data as $data){
-//            foreach ($data as $field => $fieldvalue){
-//                $formatdata[$field] = $fieldvalue;
-//            }
-//            return $formatdata;
-//        }             
-//    }
+    
+    //array_pad ( array $array , int $size , mixed $value )
     
 }

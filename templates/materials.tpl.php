@@ -5,8 +5,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-var_dump($this->data);
-$data = array_slice($this->data, 0, count($this->data)-2);
+//var_dump($data['main']);
+//$data = array_slice($this->data, 0, count($this->data)-2);
 ?>
 <div class="row">
     <h1>Статьи</h1>
@@ -23,7 +23,7 @@ $data = array_slice($this->data, 0, count($this->data)-2);
             <th colspan="2">Редактирование</th>
             <?php endif;?>
         </tr>
-        <?php foreach ($data as $par):?>
+        <?php foreach ($data['main'] as $par):?>
         <tr>
             <td><?=$par['material_id'];?></td>
             <td><a href="<?=$_SERVER['REQUEST_URI']."/".$par['material_id']?>"><?=$par['mat_title'];?></a></td>

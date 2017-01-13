@@ -25,15 +25,18 @@ class View {
     }
     
     protected function renderContent() {
-        $main = $this->data['main'];
-        for($i=1; $i<count($this->data); $i++){
-            $extra.$i = $this->data['extra'.$i];
-        }
-        $this->includetpl();
+        $data['main'] = $this->data['main'];
+        $extra = array();
+        for($i=1; $i<=count($this->data); $i++){
+            $extra['extra'][] = $this->data['extra'.$i];            
+        }        
+        $data = array_merge($data, $extra);
+        //var_dump($data);
+        $this->includetpl($data);
     }
     
     
-    protected function includetpl(){
+    protected function includetpl($data=array()){
         //$this->data;
         //$data = $this->renderContent();
         //var_dump($data);

@@ -13,8 +13,8 @@
  */
 class MainView extends View {
     protected $tpl =['main'];
-    protected function renderContent() {
-          return $formatdata = $this->data;   
-        
-    }
+//    protected function renderContent() {
+//          return $formatdata = $this->data;   
+//        
+//    }
 }

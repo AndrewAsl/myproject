@@ -12,7 +12,9 @@
  * @author Андрей
  */
 class MainModel extends Model{
-    protected $dataPage = array('Hello Word');
+    //protected $dataPage = array('Hello Word');
     
-  protected  function read(){}  
-}
+    protected  function read (){
+        $this->dataPage['main'] = array('Hello World!!!');   
+    }
+}    

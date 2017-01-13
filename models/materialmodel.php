@@ -19,14 +19,25 @@ class MaterialModel extends Model{
     public function getDataPage() {
         //parent::getDataPage();
         $this->dataPage['extra1'] = Db::readonetable('material_types');
-        $this->dataPage['extra2'] = Db::readonetable('books');
+        
         //$arr1 = $this->dataPage;
         //$this->dataPage = array_merge($arr1, $extra1, $extra2);
         //var_dump($this->dataPage);
+        
         return $this->dataPage;
     }
     
+    public function getAjaxData(){
+        //echo 'this ajax';
+        $this->dataPage['extra2'] = Db::readonetable('books');
+        //var_dump($this->dataPage['extra2']);
+        $jsn = json_encode($this->dataPage['extra2']);
+        echo $jsn;
+        //return $jsn;
+        //exit();
+    }
+    
     protected function create (){
-        //var_dump($this->inputData);
+        $ok = Db::insert($this->table_name, $this->inputData);
     }
 }

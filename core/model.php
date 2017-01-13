@@ -26,10 +26,10 @@ class Model {
         //Session::Control();
     }
     
-    public function run($action='', $id='', $pNum=''){
+    public function run($action, $id, $pNum){
         $this->method = $action;
         $this->id = $id;                
-        $this->pNum = $pNum;
+        $this->pNum = $pNum; 
         if (method_exists($this, $this->method)){
             if($this->id){
                 $this->{$this->method}($this->id);

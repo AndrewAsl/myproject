@@ -33,11 +33,13 @@ class Db {
             $newval[$k] = $val;
         }
         $stmt =self::$dbc->prepare("INSERT INTO ".$table_name." (".$str.")"." VALUES (".$newvalues.")");
-        if($stmt-> execute($newval)){
-            return self::$dbc->lastInsertId(); 
-        } else {
-            return false;
-        }   
+        var_dump($stmt);
+        //var_dump($stmt);
+//        if($stmt-> execute($newval)){
+//            return self::$dbc->lastInsertId(); 
+//        } else {
+//            return false;
+//        }   
     }
     
     static function readonetable($table_name){
