@@ -23,7 +23,6 @@ class Model {
     public function __construct($inputData) {
         $this->inputData = $inputData;
         Db::connect();
-        //Session::Control();
     }
     
     public function run($action, $id, $pNum){
@@ -45,8 +44,8 @@ class Model {
     protected function create (){
         $ok = Db::insert($this->table_name, $this->inputData);
         if($ok){
-            //unset($this->inputData);
-            //header ("Location: /materials");
+            unset($this->inputData);
+            header ("Location: ".$_SERVER['REQUEST_URI']);
             exit();
         } else {
             var_dump($ok);

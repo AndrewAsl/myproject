@@ -25,6 +25,10 @@ class Controller {
         $this->adress = rtrim($this->adress, '/');
         $this->names = explode('/', $this->adress);
         $this->setAction();
+        $this->sessionControl();
+        //var_dump($_SESSION);
+        //var_dump($_SESSION['name']);
+        //var_dump($this->action);
         $this->check();
         if ($this->modelName && $this->viewName){
             $this->model = new $this->modelName($this->outputData);
@@ -83,6 +87,19 @@ class Controller {
     
     public function getNames(){
         return $this->names;
+    }
+    
+    protected function sessionControl(){
+        if (($this->action == 'create' ||
+            $this->action == 'delete' ||
+            $this->action == 'update' ||
+            $this->action == 'getAjaxData')  &&
+            (empty($_SESSION)  || $_SESSION['username'] !== 'admin'))
+        {
+              
+            header ("Location: /");
+            exit();
+        }
     }
     
 }

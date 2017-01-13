@@ -57,8 +57,9 @@ class Kernel {
         {
             //echo '404: ',  $e->getMessage(), "\n";
             $data = array();
-            $data['content'] = $e->getMessage();
-            $this->view = new View();
+            $data['main'] = $e->getMessage();
+            
+            $this->view = new MainView('main');
             $this->view->render($data);
         }
         

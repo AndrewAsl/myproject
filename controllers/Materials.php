@@ -12,6 +12,7 @@ class Materials_Controller extends Controller {
     protected $viewName = 'MaterialView';
     
     protected function setAction(){
+        var_dump($this->names);
         parent::setAction();
         if ($this->names[1] === 'create'){
             $this->action = 'create';
@@ -19,6 +20,10 @@ class Materials_Controller extends Controller {
         if ($this->names[1] === 'ajax'){
             $this->action = 'getAjaxData';
         }
+        if ($this->names[0] === 'ajax' && $this->names[1] === 'delete'){
+            $this->action = 'delete';
+        }
+        var_dump($this->action);
     }
     
     protected function check(){
@@ -26,7 +31,7 @@ class Materials_Controller extends Controller {
             if (!empty($_POST['mat_title'])){
                 unset($_POST['create']);
                 if (empty($_POST['material_price'])){
-                    $_POST['material_price'] = 0;
+                    $_POST['material_price'] = (float)0;
                 } else{
                     $_POST['material_price'] = (float)$_POST['material_price'];
                 }
@@ -44,9 +49,7 @@ class Materials_Controller extends Controller {
         private function _cutStr($str, $length, $end = '...', $charset = 'UTF-8', $token = '~') {
             $str = strip_tags($str);
             if (mb_strlen($str, $charset) >= $length) {
-                    var_dump(mb_strlen($str));
                 $wrap = wordwrap($str, $length*2, $token);
-                  var_dump($wrap);
                 $str_cut = mb_substr($wrap, 0, mb_strpos($wrap, $token, 0, $charset), $charset);    
                 return $str_cut .= $end;
             } else {

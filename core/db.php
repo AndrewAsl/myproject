@@ -33,8 +33,6 @@ class Db {
             $newval[$k] = $val;
         }
         $stmt =self::$dbc->prepare("INSERT INTO ".$table_name." (".$str.")"." VALUES (".$newvalues.")");
-        //var_dump($stmt);
-        //var_dump($newval);
         if($stmt-> execute($newval)){
             return self::$dbc->lastInsertId(); 
         } else {
@@ -67,6 +65,10 @@ class Db {
         
        $stmt = self::$dbc->prepare(
                 "UPDATE ".$table_name. " SET "); 
+    }
+    static function delete($table_name, array $values){        
+       //$stmt = self::$dbc->prepare(
+        //        "DELETE FROM ".$table_name. " WHERE filmID =  :filmID"); 
     }
 
 

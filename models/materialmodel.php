@@ -35,6 +35,21 @@ class MaterialModel extends Model{
     }
     
     protected function create (){
-        //$ok = Db::insert($this->table_name, $this->inputData);
+        if (empty($this->inputData)){
+            return;
+        }
+        $ok = Db::insert($this->table_name, $this->inputData);
+        if($ok){
+            unset($this->inputData);
+            header ("Location: /materials");
+            exit();
+        } else {
+            var_dump($ok);
+        }        
+    }
+    
+    protected function delete (){
+        $this->id = $id;
+        //Db::delete($this->id);
     }
 }

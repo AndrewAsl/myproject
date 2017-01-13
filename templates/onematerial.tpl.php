@@ -8,9 +8,11 @@
 //var_dump($data);
 ?>
 <div class="container">
-    <h1><?=$data['mat_title'];?></h1>
-    <p><?=$data['body'];?></p>
-    <h3><?=$data['material_price'];?></h3>
+    <h1><?=$data['main'][0]['mat_title'];?></h1>
+    <p><?=$data['main'][0]['body'];?></p>
+    <?php if ($data['main'][0]['material_price'] != 0): ?>
+        <h3><?=$data['main'][0]['material_price'];?></h3>
+    <?php endif;?>
 </div>
 
 
