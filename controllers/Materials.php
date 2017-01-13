@@ -25,11 +25,32 @@ class Materials_Controller extends Controller {
         if (isset($_POST['create'])){
             if (!empty($_POST['mat_title'])){
                 unset($_POST['create']);
-                $this->outputData = parent::sanitaze($_POST);
+                if (empty($_POST['material_price'])){
+                    $_POST['material_price'] = 0;
+                } else{
+                    $_POST['material_price'] = (float)$_POST['material_price'];
+                }
+                if (empty($_POST['anons'])){
+                    $_POST['anons'] = $this->_cutStr($_POST['body'], 400);
+                }
+                //$this->outputData = parent::sanitaze($_POST);
+                $this->outputData = $_POST;
             }    
         } else {
             return;
         }
         //var_dump($this->outputData);
     }
+        private function _cutStr($str, $length, $end = '...', $charset = 'UTF-8', $token = '~') {
+            $str = strip_tags($str);
+            if (mb_strlen($str, $charset) >= $length) {
+                    var_dump(mb_strlen($str));
+                $wrap = wordwrap($str, $length*2, $token);
+                  var_dump($wrap);
+                $str_cut = mb_substr($wrap, 0, mb_strpos($wrap, $token, 0, $charset), $charset);    
+                return $str_cut .= $end;
+            } else {
+                return $str;
+            }
+        }
 }

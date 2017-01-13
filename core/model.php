@@ -20,7 +20,7 @@ class Model {
     protected $fieldname;
     
 
-    public function __construct($inputData = []) {
+    public function __construct($inputData) {
         $this->inputData = $inputData;
         Db::connect();
         //Session::Control();
@@ -45,12 +45,12 @@ class Model {
     protected function create (){
         $ok = Db::insert($this->table_name, $this->inputData);
         if($ok){
-            header ("Location: /materials");
+            //unset($this->inputData);
+            //header ("Location: /materials");
             exit();
         } else {
             var_dump($ok);
-        }
-        
+        }        
     }
     
     protected  function read (){

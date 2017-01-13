@@ -28,7 +28,14 @@
         
         $('#mat_type').change(function(){
             if ($('#mat_type option:selected').text() === 'Для книги'){                
-                $.post("/ajax",{'book_id':'id','book_name':'bn'});
+                $.post("/materials/ajax", function(data){
+                    console.log(data.length);
+                    $('#books').empty();
+                    for (var i=0; i<data.length; i++){
+                        $('#books').append('<option value=' + data[i].book_id + '>' + data[i].bookname + '</option>')
+                    }
+                    $('#books').change();
+                }, "json");
                 $('#choosebook').show();
             } else {
                 $('#choosebook').hide();
@@ -55,10 +62,7 @@
         </p>
         <p id="choosebook">
             <label>Выберите книгу:</label><br>
-            <select id="books" name="books">
-                <?php foreach ($data['extra'][1] as $option):?>
-                    <option value="<?=$option['book_id']?>"><?=$option['bookname']?></option>
-                <?php endforeach;?>
+            <select id="books" name="books_id">
             </select>
         </p>
         <p>

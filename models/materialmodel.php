@@ -28,16 +28,13 @@ class MaterialModel extends Model{
     }
     
     public function getAjaxData(){
-        //echo 'this ajax';
         $this->dataPage['extra2'] = Db::readonetable('books');
-        //var_dump($this->dataPage['extra2']);
         $jsn = json_encode($this->dataPage['extra2']);
         echo $jsn;
-        //return $jsn;
-        //exit();
+        exit();
     }
     
     protected function create (){
-        $ok = Db::insert($this->table_name, $this->inputData);
+        //$ok = Db::insert($this->table_name, $this->inputData);
     }
 }
