@@ -32,9 +32,9 @@
                 <li>
                     <a href="/materials">Статьи</a>
                 </li>
-                <li>
+                <!--li>
                     <a href="/books">Книги</a>
-                </li>
+                </li-->
                 <?php if($_SESSION['username'] === 'admin'):?>
                  <li>
                     <a href="/users">Пользователи</a>

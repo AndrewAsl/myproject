@@ -11,8 +11,28 @@ class Materials_Controller extends Controller {
     protected $modelName = 'MaterialModel';
     protected $viewName = 'MaterialView';
     
+    public function run() {
+        echo 1;
+        $this->adress = rtrim($this->adress, '/');
+        $this->names = explode('/', $this->adress);
+        $this->setAction();
+        $this->sessionControl();
+        //var_dump($_SESSION);
+        //var_dump($_SESSION['name']);
+        //var_dump($this->action);
+        $this->check();
+        if ($this->modelName && $this->viewName){
+            $this->model = new $this->modelName($this->outputData);
+            $this->model->run($this->action, $this->id, $this->pNum);
+            $this->view = new $this->viewName($this->getNames());
+            $this->view->render($this->model->getDataPage());            
+        } else {
+            exit();
+        }    
+    }
+    
     protected function setAction(){
-        var_dump($this->names);
+        //var_dump($this->names);
         parent::setAction();
         if ($this->names[1] === 'create'){
             $this->action = 'create';
@@ -23,12 +43,16 @@ class Materials_Controller extends Controller {
         if ($this->names[0] === 'ajax' && $this->names[1] === 'delete'){
             $this->action = 'delete';
         }
-        var_dump($this->action);
+        if ($this->names[2] === 'update'){
+            $this->action = 'update';
+        }
+        //var_dump($this->action);
     }
     
     protected function check(){
-        if (isset($_POST['create'])){
+        if (isset($_POST['update']) || isset($_POST['create'])){
             if (!empty($_POST['mat_title'])){
+                unset($_POST['update']);
                 unset($_POST['create']);
                 if (empty($_POST['material_price'])){
                     $_POST['material_price'] = (float)0;

@@ -14,6 +14,7 @@ class View {
     public function __construct($names) {
         ob_start();
         $this->pageNames = $names;
+        //var_dump($this->pageNames);
         
     }
     
@@ -36,10 +37,10 @@ class View {
     }
     
     
-    protected function includetpl($data=array()){
+    protected function includetpl($data){
         //$this->data;
         //$data = $this->renderContent();
-        //var_dump($data);
+        //var_dump($this->pageNames);
         if ($this->pageNames[1]){
             include "./templates/".$this->tpl[1].".tpl.php";
         } else {

@@ -36,7 +36,7 @@ class Db {
         if($stmt-> execute($newval)){
             return self::$dbc->lastInsertId(); 
         } else {
-            return false;
+            return $stmt->debugDumpParams();
         }   
     }
     
@@ -61,14 +61,47 @@ class Db {
         return $result;
     }
     
-    static function update($table_name, $cols, array $values){
-        
-       $stmt = self::$dbc->prepare(
-                "UPDATE ".$table_name. " SET "); 
+    static function update($table_name, array $values){ 
+        $cols = array_keys($values);
+        $str = implode(", ", $cols);
+        $pattern = '/(^|[,]\s+)([a-zA-z])/iuU';
+        $replace = '$1:$2';
+        $newvalues = preg_replace ($pattern , $replace , $str);
+        $valtoup = explode(', ', $newvalues);
+        //var_dump($cols);
+        //var_dump($valtoup);
+        if(count($cols) && count($valtoup)){
+          $uparr = array_combine($cols, $valtoup);
+          //var_dump($uparr);
+          $str = array();
+          foreach ($uparr as $upkey => $upval){
+            $str[] = $upkey."=".$upval." ";  
+          }
+          $strok = implode(', ',$str);          
+        }
+        foreach ($values as $k=>$val){
+            $k = preg_replace('/\b[a-zA-Z_-]+\b/', ':$0', $k);
+            $newval[$k] = $val;
+        }
+        $stmt = self::$dbc->prepare(
+                "UPDATE ".$table_name. " SET ".$strok);
+        //var_dump($stmt);  
+        //var_dump($newval);  
+        $stmt-> execute($newval);
+        $stmt->debugDumpParams();       
     }
-    static function delete($table_name, array $values){        
-       //$stmt = self::$dbc->prepare(
-        //        "DELETE FROM ".$table_name. " WHERE filmID =  :filmID"); 
+    
+    
+    
+    static function delete($table_name, $namefield, $id){        
+       $stmt = self::$dbc->prepare(
+                "DELETE FROM ".$table_name." WHERE ".$namefield."=".$id);
+        //var_dump($stmt);
+        if ($stmt-> execute()){
+            return true;
+        } else {
+            return false;
+        }         
     }
 
 

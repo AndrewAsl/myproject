@@ -10,25 +10,9 @@
 ?>
 <script>
 $(function(){
-    $('a#del').click(function(e){
-        e.preventDefault();
-        console.log($('a#del').closest(this));
-        $('td#itemid').each(function(i){
-            console.log(i);
-        }
-                
-        );
+    $('a#del').click(function(){
+        alert('Вы уверены?');
     });
-//    $('a#del').each(function(i, e){
-//        this.click(function(e){
-//            //e.preventDefault();
-//            alert('Вы действительно хотите удалить запись?');
-//            var td = $('td#itemid');            
-//            var material_id = td[i].text();
-//            $.post("/ajax/delete/material", material_id);
-//        });
-//    });    
-        
 });
     
 </script>
@@ -55,7 +39,7 @@ $(function(){
             <td><?=$par['material_price'];?></td>
             <?php if($_SESSION['username'] === 'admin'):?>
             <td><a id="del" href="/admin/materials/<?=$par['material_id']?>/delete">DELETE</a></td>
-            <td><a href="">UPDATE</a></td>
+            <td><a href="/materials/<?=$par['material_id']?>/update">UPDATE</a></td>
             <?php endif;?>
         </tr>       
         <?php endforeach;?>

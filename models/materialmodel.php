@@ -35,6 +35,7 @@ class MaterialModel extends Model{
     }
     
     protected function create (){
+        echo 2;
         if (empty($this->inputData)){
             return;
         }
@@ -44,12 +45,24 @@ class MaterialModel extends Model{
             header ("Location: /materials");
             exit();
         } else {
-            var_dump($ok);
+            echo $ok;
         }        
     }
     
     protected function delete (){
-        $this->id = $id;
-        //Db::delete($this->id);
+        //$this->id = $id;
+        $flag = Db::delete($this->table_name, $this->fieldname, $this->id);
+        if ($flag){
+            header('Location: /materials');
+        }
+        
+    }
+    
+    protected function update (){
+        echo 2;
+        $this->dataPage['main'] = Db::singleRead($this->table_name,$this->fieldname, (int)$this->id);
+        var_dump($this->inputData);
+        Db::update($this->table_name, $this->inputData);
+        //header('Location: /materials');
     }
 }

@@ -52,7 +52,7 @@ class Controller {
                     $this->id = $this->names[1];
                     break;
             }
-        } else {
+        } elseif($this->names[0]=='admin' ) {
             switch ($count) {
                 case 2:                    
                     $this->action = 'read';                    

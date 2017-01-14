@@ -13,6 +13,6 @@
  */
 class Admin_Controller extends Controller{
     //put your code here
-    protected $modelName = 'MaterialModel';
-    protected $viewName = 'MaterialView';
+    //protected $modelName = 'MaterialModel';
+    //protected $viewName = 'MaterialView';
 }

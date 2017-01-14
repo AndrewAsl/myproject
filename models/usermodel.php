@@ -12,17 +12,8 @@
  * @author Андрей
  */
 class UserModel extends Model {
-    //put your code here
-    protected $id;//id материала из URL, переданный контроллером
-    protected $table_name = '';//имя таблицы из БД
-    protected $tables_names = [];//имя таблиц из БД для join-запросов
-    protected $pNum = 1;//номер страницы сайта
-    protected $pToPage = 10;//количество единиц информации на 1 страницу
-    protected $psAmount;//количество страниц с информацией
-    protected $pInfPerPage = [];//массив информации на одну страницу
-    //protected $dataPage = [];//массив всех данных для отображения во вью страницы
-    public $inputData =[];//массив входящих данных
-    protected $method; 
+    protected $table_name = 'users';//имя таблицы из БД
+    protected $fieldname = 'user_id';
     
     public function __construct($inputData) {
         parent::__construct($inputData);
@@ -51,12 +42,12 @@ class UserModel extends Model {
     
     function login(){
         //Session::init();
-        //session_start();
-        var_dump($this->method);
-        var_dump($_SESSION);
-        var_dump($_COOKIE['PHPSESSID']);
-        var_dump($_REQUEST);
-        var_dump(SID);
+        session_start();
+        //var_dump($this->method);
+        //var_dump($_SESSION);
+        //var_dump($_COOKIE['PHPSESSID']);
+        //var_dump($_REQUEST);
+        //var_dump(SID);
     }
     
     function logout(){
@@ -66,7 +57,22 @@ class UserModel extends Model {
         exit();
     }
     
-    function register(){
-        var_dump(get_object_vars($this));
+    protected function register(){
+        parent::create();
     }
+    
+//    function (){
+//        if (empty($this->inputData)){
+//            return;
+//        }
+//        $ok = Db::insert($this->table_name, $this->inputData);
+//        if($ok){
+//            unset($this->inputData);
+//            header ("Location: /materials");
+//            exit();
+//        } else {
+//            echo $ok;
+//        }  
+//        
+//    }
 }

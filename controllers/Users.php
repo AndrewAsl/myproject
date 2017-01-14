@@ -9,23 +9,23 @@
 class Users_Controller extends Controller {
     protected $modelName = 'UserModel';
     protected $viewName = 'UserView';
-    public $outputData;
-    static $tplForView;
-
-    
+   
     protected function setAction(){
         //var_dump($this->names);
-//        if ($this->names[1] == 'auth'){
-//            $this->action = 'auth';
-//            self::$formForView = 'auth';
+        parent::setAction();
+//        if ($this->names[1] === 'register'){
+//            $this->action = 'create';
 //        }
-//        if ($this->names[1] == 'register'){
-            $this->action = self::$tplForView = $this->names[1];
-//        }
-    }
-    
-    public static function getTplView(){
-        return self::$tplForView;
+        if ($this->names[1] === 'ajax'){
+            $this->action = 'getAjaxData';
+        }
+        if ($this->names[0] === 'ajax' && $this->names[1] === 'delete'){
+            $this->action = 'delete';
+        }
+        if ($this->names[2] === 'update'){
+            $this->action = 'update';
+        }
+        //var_dump($this->action);
     }
     
     protected function check(){

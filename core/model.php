@@ -45,7 +45,7 @@ class Model {
         $ok = Db::insert($this->table_name, $this->inputData);
         if($ok){
             unset($this->inputData);
-            header ("Location: ".$_SERVER['REQUEST_URI']);
+            header ("Location: /");
             exit();
         } else {
             var_dump($ok);
@@ -61,13 +61,13 @@ class Model {
     }
     
     protected function update (){
-        $this->id = $id;
-        Db::update($this->id);
+        $this->dataPage['main'] = Db::singleRead($this->table_name,$this->fieldname, (int)$this->id);
+        Db::update($this->table_name, $this->inputData);
     }
     
     protected function delete (){
-        $this->id = $id;
-        Db::delete($this->id);
+        Db::delete($this->table_name, $this->fieldname, $this->id);
+        
     }
     
     public function getDataPage(){

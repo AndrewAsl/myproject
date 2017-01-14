@@ -40,12 +40,14 @@
 <div class="container">
    <form action="" method="post">
         <label for="name">Имя:</label><br>
-        <input id="name" type="text" name="name" size="20" maxlength="20"
+        <input id="name" type="text" name="name" size="80" maxlength="20"
         value="<?=$_POST['name']?>"><br>
-        <p>Поле Имя является обязательным <br> Должно состоять от 3 до 20 символов </p>
-        <label for="name">Ваше сообщение:</label><br>
-        <textarea id="message" name="message" rows="10" cols="30"><?=$_POST['message']?></textarea><br>
-        <p>Поле Сообщение является обязательным <br> Должно состоять от 5 до 1000 символов </p>
+        <label for="psw">Ваш пароль:</label><br>
+        <input id="psw" name="psw" size="80" maxlength="20" type='password'><br>
+        <img id="captcha_img" src="/assets/captcha/captcha.php?t=<?php echo time();?>" style="border: 1px solid black"/><br/>
+        <p><a href="javascript:void(0)" onclick="var d = new Date(); document.getElementById('captcha_img').src = '/assets/captcha/captcha.php?t='+d.getTime();">Не вижу символы</a></p>
+        <p><input type="text" name="captcha"/>
+          <label><input type="checkbox" name="check" id="check"> Запомнить меня</label><br>
         <input id="op" type="submit" name="op" value="Отправить">
     </form>
 </div>
